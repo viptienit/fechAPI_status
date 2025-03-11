@@ -37,7 +37,7 @@ app.post("/status", (req, res) => {
 
   const list = data();
   list.push(status);
-  fs.writeFileSync("./data.json", JSON.stringify(list));
+  fs.writeFileSync("./data.json", JSON.stringify(list, null, 2));
   res.json({
     status: true,
     mesage: "Thêm trạng thái thành công",
@@ -51,7 +51,7 @@ app.put("/status/:id", (req, res) => {
   const status = new Status(id, name, description);
   const list = data();
   list[list.findIndex((item) => item.id == id)] = status;
-  fs.writeFileSync("./data.json", JSON.stringify(list));
+  fs.writeFileSync("./data.json", JSON.stringify(list, null, 2));
   res.json({
     status: true,
     mesage: "Sửa trạng thái thành công",
@@ -62,7 +62,7 @@ app.put("/status/:id", (req, res) => {
 app.delete("/status/:id", (req, res) => {
   const id = +req.params.id;
   const list = data().filter((e) => e.id != id);
-  fs.writeFileSync("./data.json", JSON.stringify(list), (err) => {
+  fs.writeFileSync("./data.json", JSON.stringify(list, null, 2), (err) => {
     console.log(err);
   });
   res.json({
