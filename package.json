@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "npm install && json-server --watch db.json --port 3000"
   },
   "author": "",
   "license": "ISC",
