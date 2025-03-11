@@ -18,26 +18,43 @@ class Status {
     this.isDefault = false;
   }
 }
-
-const data = () => {
-  return JSON.parse(fs.readFileSync("./data.json", "utf-8"));
+let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const data = (id) => {
+  return JSON.parse(fs.readFileSync(`./data${id}.json`, "utf-8"));
 };
 
 app.get("/status", (req, res) => {
+  const query = req.query.idServer;
+  if (!query || !arr.includes(+query)) {
+    res.json({
+      status: false,
+      mesage: "Chưa có query, query từ 1 -> 10",
+      data: data(query),
+    });
+  }
   res.json({
     status: true,
     mesage: "Lấy danh sách trạng thái thành công",
-    data: data(),
+    data: data(query),
   });
 });
 app.post("/status", (req, res) => {
+  const query = req.query.idServer;
+  if (!query || !arr.includes(+query)) {
+    res.json({
+      status: false,
+      mesage: "Chưa có query, query từ 1 -> 10",
+      data: data(query),
+    });
+  }
+
   const { name, description } = req.body;
-  const id = data()[data().length - 1].id + 1;
+  const id = data(query)[data(query).length - 1].id + 1;
   const status = new Status(id, name, description);
 
-  const list = data();
+  const list = data(query);
   list.push(status);
-  fs.writeFileSync("./data.json", JSON.stringify(list, null, 2));
+  fs.writeFileSync(`./data${query}.json`, JSON.stringify(list, null, 2));
   res.json({
     status: true,
     mesage: "Thêm trạng thái thành công",
@@ -46,12 +63,21 @@ app.post("/status", (req, res) => {
 });
 
 app.put("/status/:id", (req, res) => {
+  const query = req.query.idServer;
+  if (!query || !arr.includes(+query)) {
+    res.json({
+      status: false,
+      mesage: "Chưa có query, query từ 1 -> 10",
+      data: data(query),
+    });
+  }
+
   const { name, description } = req.body;
   const id = +req.params.id;
   const status = new Status(id, name, description);
-  const list = data();
+  const list = data(query);
   list[list.findIndex((item) => item.id == id)] = status;
-  fs.writeFileSync("./data.json", JSON.stringify(list, null, 2));
+  fs.writeFileSync(`./data${query}.json`, JSON.stringify(list, null, 2));
   res.json({
     status: true,
     mesage: "Sửa trạng thái thành công",
@@ -60,11 +86,23 @@ app.put("/status/:id", (req, res) => {
 });
 
 app.delete("/status/:id", (req, res) => {
-  const id = +req.params.id;
-  const list = data().filter((e) => e.id != id);
-  fs.writeFileSync("./data.json", JSON.stringify(list, null, 2), (err) => {
-    console.log(err);
-  });
+  const query = req.query.idServer;
+  if (!query || !arr.includes(+query)) {
+    res.json({
+      status: false,
+      mesage: "Chưa có query, query từ 1 -> 10",
+      data: data(query),
+    });
+  }
+
+  const list = data(query).filter((e) => e.id != id);
+  fs.writeFileSync(
+    `./data${query}.json`,
+    JSON.stringify(list, null, 2),
+    (err) => {
+      console.log(err);
+    }
+  );
   res.json({
     status: true,
     mesage: "Xóa thái thành công",
