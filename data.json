@@ -1,1 +1,32 @@
-[{"id":1,"name":"Khởi tạo vụ án","description":"Trạng thái ban đầu khi mới tạo vụ án","createdBy":"MCB003","updatedBy":"MCB003","createdAt":"10-10-2024","updatedAt":"10-10-2024","isDefault":true},{"id":2,"name":"Hoàn thành vụ án","description":"Vụ án đã được xét xử xong","createdBy":"MCB003","updatedBy":"MCB003","createdAt":"10-10-2024","updatedAt":"10-10-2024","isDefault":true},{"id":3,"name":"Chuyển giao vụ án","description":"Từ đơn vị này sang đơn vị khác","createdBy":"MCB003","updatedBy":"MCB003","createdAt":"10-10-2024","updatedAt":"10-10-2024","isDefault":true}]
+[
+  {
+    "id": 1,
+    "name": "Khởi tạo vụ án",
+    "description": "Trạng thái ban đầu khi mới tạo vụ án",
+    "createdBy": "MCB003",
+    "updatedBy": "MCB003",
+    "createdAt": "10-10-2024",
+    "updatedAt": "10-10-2024",
+    "isDefault": true
+  },
+  {
+    "id": 2,
+    "name": "Hoàn thành vụ án",
+    "description": "Vụ án đã được xét xử xong",
+    "createdBy": "MCB003",
+    "updatedBy": "MCB003",
+    "createdAt": "10-10-2024",
+    "updatedAt": "10-10-2024",
+    "isDefault": true
+  },
+  {
+    "id": 3,
+    "name": "Chuyển giao vụ án",
+    "description": "Từ đơn vị này sang đơn vị khác",
+    "createdBy": "MCB003",
+    "updatedBy": "MCB003",
+    "createdAt": "10-10-2024",
+    "updatedAt": "10-10-2024",
+    "isDefault": true
+  }
+]

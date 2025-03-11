@@ -20,7 +20,7 @@ class Status {
 }
 
 const data = () => {
-  return require("./data.json");
+  return JSON.parse(fs.readFileSync("./data.json", "utf-8"));
 };
 
 app.get("/status", (req, res) => {
