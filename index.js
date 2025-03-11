@@ -61,7 +61,7 @@ app.put("/status/:id", (req, res) => {
 
 app.delete("/status/:id", (req, res) => {
   const id = +req.params.id;
-  const list = data().filter((e) => e.id !== id);
+  const list = data().filter((e) => e.id != id);
   fs.writeFileSync("./data.json", JSON.stringify(list), (err) => {
     console.log(err);
   });
